@@ -10,7 +10,11 @@ public class HomePage {
 
     public static final By ARTICLE_TITLE = By.xpath("//a[@class='top2012-title']");
 
-    public static final String MAIN_PAGE_WEB_URL = "http://www.delfi.lv";
+    private static final By ARTICLE = By.className("top2012-big");
+
+    private static final String MAIN_PAGE_WEB_URL = "http://www.delfi.lv";
+
+    private static final String MAIN_PAGE_MOBILE_URL = "http://m.delfi.lv";
 
     public static final By TITLE1 = By.xpath(".//*[contains(@class, 'top2012-title')]/a[1]");
 
@@ -29,6 +33,10 @@ public class HomePage {
         this.baseFunc = baseFunc;
     }
 
+    public List<WebElement> getAllArticles(){
+        return baseFunc.getElements(ARTICLE);
+    }
+
     public List<WebElement> getAllTitles() {
 
         //Find all titles and add them to a list!
@@ -45,6 +53,7 @@ public class HomePage {
         baseFunc.getToUrl(MAIN_PAGE_WEB_URL);
     }
 
-
-
+   public void openBrowserMobile(){
+        baseFunc.getToUrl(MAIN_PAGE_MOBILE_URL);
+   }
 }

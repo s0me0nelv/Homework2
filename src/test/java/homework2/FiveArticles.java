@@ -30,7 +30,7 @@ public class FiveArticles {
 
         // Finding all article titles and setting them to a list
         LOGGER.info("We are finding all article titles and creating a list");
-        List<WebElement> articleTitles = homePage.getAllTitles();
+        List<WebElement> articles = homePage.getAllArticles();
 
         //Creating an Arraylist for our first five articles
         LOGGER.info("We are creating an arraylist for first five articles");
@@ -38,22 +38,33 @@ public class FiveArticles {
 
         for (int i = 0; i < 5; i++){
             Article a = new Article();
-            WebElement web = articleTitles.get(i);
+            WebElement web = articles.get(i);
             //System.out.println(web.getText());
 
-            a.setTitle(web.findElement(homePage.ARTICLE_TITLE).getText());
+
+
+
+            a.setTitle(web.findElement(homePage.TITLE).getText());
             if (web.findElements(homePage.COMMENTS).isEmpty()) {
                 a.setCommentCount(0);
             } else {
                 a.setCommentCount(web.findElement(homePage.COMMENTS).getText());
             }
-            //System.out.println(a);
+
+            //System.out.println(a.getTitle());
 
             firstFive.add(a);
+            System.out.println(firstFive);
+
+
+
 
 
         }
 
+
+        //LOGGER.info("Opening new tab");
+       //baseFunc.openNewTab();
 
 
 
@@ -72,8 +83,8 @@ public class FiveArticles {
 
     }
 
-    @After
-    public void end(){
-        baseFunc.quitBrowser();
-    }
+//    @After
+//    public void end(){
+//        baseFunc.quitBrowser();
+//    }
 }

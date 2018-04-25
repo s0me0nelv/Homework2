@@ -1,15 +1,18 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseFunc {
 
     public WebDriver driver;
+    public WebDriver second_driver;
 
 
 
@@ -35,6 +38,16 @@ public class BaseFunc {
     public void quitBrowser(){
 
         driver.quit();
+    }
+
+    public void openSecondWindow(){
+        System.setProperty("webdriver.gecko.driver", "C:/geckodriver.exe");
+        second_driver = new FirefoxDriver();
+    }
+
+    public void openNewTab(){
+        driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
+
     }
 
 
