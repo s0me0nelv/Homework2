@@ -1,5 +1,6 @@
 package homework2;
 
+import Pages.ArticlePage;
 import Pages.BaseFunc;
 import Pages.HomePage;
 import model.Article;
@@ -8,11 +9,11 @@ import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Test;
 import org.omg.PortableInterceptor.HOLDING;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class FiveArticles {
 
@@ -54,14 +55,27 @@ public class FiveArticles {
             //System.out.println(a.getTitle());
 
             firstFive.add(a);
-            System.out.println(firstFive);
+            //System.out.println(firstFive);
 
 
 
 
 
         }
+        articles.get(0).click();
+        ArticlePage aaa = new ArticlePage(baseFunc);
+        WebElement article1 = aaa.getArticleName();
+          System.out.println(article1.getText());
+        baseFunc.driver.navigate().back();
+        baseFunc.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        articles.get(1).click();
+        WebElement article2 = aaa.getArticleName();
+        System.out.println(article2.getText());
 
+
+
+        //Article article1 = new Article();
+        //WebElement article11 = baseFunc.driver.findElement()
 
         //LOGGER.info("Opening new tab");
        //baseFunc.openNewTab();
