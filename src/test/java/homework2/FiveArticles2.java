@@ -23,7 +23,7 @@ public class FiveArticles2 {
         // Open main page on Web version
         LOGGER.info("We are opening www.delfi.lv");
         HomePage homePage = new HomePage(baseFunc);
-        homePage.openBrowser();
+
 
         // Finding all article titles and setting them to a list
         LOGGER.info("We are finding all article titles and creating a list");

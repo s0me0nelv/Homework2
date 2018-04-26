@@ -4,27 +4,17 @@ import model.Article;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage {
 
-    public static final By ARTICLE_TITLE = By.xpath("//a[@class='top2012-title']");
-
-    private static final By ARTICLE = By.className("top2012-big");
-
-    private static final String MAIN_PAGE_WEB_URL = "http://www.delfi.lv";
-
+    private static final By ARTICLE = By.xpath(".//h3[@class='top2012-title']");
     private static final String MAIN_PAGE_MOBILE_URL = "http://m.delfi.lv";
-
-    public static final By TITLE1 = By.xpath(".//*[contains(@class, 'top2012-title')]/a[1]");
-
-    public static final By TITLE = By.xpath(".//a[contains(@class, 'top2012-title')]");
-
-    public static final By COMMENT = By.xpath(".//*[contains(@class, 'top2012-title')]/a[2]");
-
-    public static final By COMMENTS = By.xpath(".//a[contains(@class, 'comment-count')]");
-
-
+    private static final By TITLE1 = By.xpath(".//*[contains(@class, 'top2012-title')]/a[1]");
+    private static final By TITLE = By.xpath(".//a[contains(@class, 'top2012-title')]");
+    private static final By COMMENT = By.xpath(".//*[contains(@class, 'top2012-title')]/a[2]");
+    private static final By COMMENTS = By.xpath(".//a[contains(@class, 'comment-count')]");
 
     BaseFunc baseFunc;
 
@@ -49,11 +39,38 @@ public class HomePage {
         return baseFunc.getElements(COMMENT);
     }
 
-   public void openBrowser(){
-        baseFunc.getToUrl(MAIN_PAGE_WEB_URL);
-    }
-
    public void openBrowserMobile(){
+
         baseFunc.getToUrl(MAIN_PAGE_MOBILE_URL);
+   }
+
+   public void getTitle(){
+        baseFunc.driver.findElement(TITLE);
+   }
+
+   public List<Article> getFirstFive() {
+
+       List<WebElement> articles = getAllArticles();
+       List<Article> firstFive = new ArrayList<>();
+
+       for (int i = 0; i < 5; i++) {
+           Article a = new Article();
+           WebElement web = articles.get(i);
+           //System.out.println(web.getText());
+
+           a.setTitle(web.findElement(TITLE).getText());
+
+           if (web.findElements(COMMENTS).isEmpty()) {
+               a.setCommentCount(0);
+           } else {
+               a.setCommentCount(web.findElement(COMMENTS).getText());
+           }
+
+           //System.out.println(a.getTitle());
+
+           firstFive.add(a);
+           //System.out.println(firstFive);
+       }
+      return firstFive;
    }
 }
