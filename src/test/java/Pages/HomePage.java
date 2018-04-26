@@ -73,4 +73,10 @@ public class HomePage {
        }
       return firstFive;
    }
+
+   public void clickFirstArticle() {
+
+        getFirstFive().get(0)....
+
+   }
 }
