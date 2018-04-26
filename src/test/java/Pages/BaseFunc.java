@@ -12,9 +12,6 @@ import java.util.List;
 public class BaseFunc {
 
     public WebDriver driver;
-    public WebDriver second_driver;
-
-
 
     public BaseFunc() {
         System.setProperty("webdriver.gecko.driver", "C:/geckodriver.exe");
@@ -40,10 +37,7 @@ public class BaseFunc {
         driver.quit();
     }
 
-    public void openSecondWindow(){
-        System.setProperty("webdriver.gecko.driver", "C:/geckodriver.exe");
-        second_driver = new FirefoxDriver();
-    }
+
 
     public void openNewTab(){
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");

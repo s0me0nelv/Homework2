@@ -19,58 +19,47 @@ public class FiveArticles {
 
     private BaseFunc baseFunc = new BaseFunc();
     private static final Logger LOGGER = LogManager.getLogger(FiveArticles.class);
-
+    private static final String URL = "www.delfi.lv";
 
     @Test
     public void FirstFiveArticlesTest(){
 
         // Open main page on Web version
         LOGGER.info("We are opening www.delfi.lv");
+        baseFunc.getToUrl(URL);
         HomePage homePage = new HomePage(baseFunc);
-        homePage.openBrowser();
-
-        // Finding all article titles and setting them to a list
-        LOGGER.info("We are finding all article titles and creating a list");
-        List<WebElement> articles = homePage.getAllArticles();
 
         //Creating an Arraylist for our first five articles
         LOGGER.info("We are creating an arraylist for first five articles");
-        List<Article> firstFive = new ArrayList<Article>();
-
-        for (int i = 0; i < 5; i++){
-            Article a = new Article();
-            WebElement web = articles.get(i);
-            //System.out.println(web.getText());
+        List<Article> firstFive = homePage.getFirstFive();
 
 
+        //Open mobile page
+        //Create list and get all articles
+        //Create mobile  first five Arraylist
+        //Get first five articles to the list
+        //Compare firstFive web with firstFIve mobile
 
-
-            a.setTitle(web.findElement(homePage.TITLE).getText());
-            if (web.findElements(homePage.COMMENTS).isEmpty()) {
-                a.setCommentCount(0);
-            } else {
-                a.setCommentCount(web.findElement(homePage.COMMENTS).getText());
-            }
-
-            //System.out.println(a.getTitle());
-
-            firstFive.add(a);
-            //System.out.println(firstFive);
+        //Open 1 article
+        //Get firstArticle title and comment
+        //Compare with firstFive
+        //Go to comment page
+        //Get comment + comment
+        //Compare with firstFive
 
 
 
 
 
-        }
-        articles.get(0).click();
-        ArticlePage aaa = new ArticlePage(baseFunc);
-        WebElement article1 = aaa.getArticleName();
-          System.out.println(article1.getText());
-        baseFunc.driver.navigate().back();
-        baseFunc.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        articles.get(1).click();
-        WebElement article2 = aaa.getArticleName();
-        System.out.println(article2.getText());
+//        articles.get(0).click();
+//        ArticlePage aaa = new ArticlePage(baseFunc);
+//        WebElement article1 = aaa.getArticleName();
+//          System.out.println(article1.getText());
+//        baseFunc.driver.navigate().back();
+//        baseFunc.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        articles.get(1).click();
+//        WebElement article2 = aaa.getArticleName();
+//        System.out.println(article2.getText());
 
 
 
