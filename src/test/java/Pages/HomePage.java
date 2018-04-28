@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class HomePage {
@@ -15,6 +16,7 @@ public class HomePage {
     private static final By TITLE = By.xpath(".//a[contains(@class, 'top2012-title')]");
     private static final By COMMENT = By.xpath(".//*[contains(@class, 'top2012-title')]/a[2]");
     private static final By COMMENTS = By.xpath(".//a[contains(@class, 'comment-count')]");
+
 
     BaseFunc baseFunc;
 
@@ -58,6 +60,7 @@ public class HomePage {
            WebElement web = articles.get(i);
            //System.out.println(web.getText());
 
+
            a.setTitle(web.findElement(TITLE).getText());
 
            if (web.findElements(COMMENTS).isEmpty()) {
@@ -66,7 +69,12 @@ public class HomePage {
                a.setCommentCount(web.findElement(COMMENTS).getText());
            }
 
+           a.setLink(web.getAttribute("href"));
+
+           a.setElement(web.findElement(TITLE));
+
            //System.out.println(a.getTitle());
+
 
            firstFive.add(a);
            //System.out.println(firstFive);
@@ -74,9 +82,25 @@ public class HomePage {
       return firstFive;
    }
 
-   public void clickFirstArticle() {
+   public List<Article> clickFirstArticle() {
 
-        getFirstFive().get(0)....
+        getFirstFive().get(0);
 
+       return null;
    }
+
+    public void clickLinkByHref(String href) {
+        List<WebElement> anchors = baseFunc.driver.findElements(By.tagName("a"));
+        Iterator<WebElement> i = anchors.iterator();
+
+        while(i.hasNext()) {
+            WebElement anchor = i.next();
+            if(anchor.getAttribute("href").contains(href)) {
+                anchor.click();
+                break;
+            }
+        }
+    }
+
+
 }

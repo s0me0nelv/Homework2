@@ -32,6 +32,12 @@ public class BaseFunc {
         return (List<WebElement>) driver.findElements(locator);
     }
 
+    public WebElement getElement(By locator) {
+
+        return (WebElement) driver.findElement(locator);
+
+    }
+
     public void quitBrowser(){
 
         driver.quit();

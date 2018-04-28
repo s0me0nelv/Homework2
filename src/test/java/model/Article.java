@@ -1,10 +1,12 @@
 package model;
 
+import org.openqa.selenium.WebElement;
+
 public class Article {
     private String title;
     private Integer commentCount;
-    private String photoList;
     private String link;
+    private WebElement element;
 
     public String getTitle() {
         return title;
@@ -31,20 +33,22 @@ public class Article {
 
     }
 
-    public String getPhotoList() {
-        return photoList;
-    }
-
-    public void setPhotoList(String photoList) {
-        this.photoList = photoList;
-    }
 
     public String getLink() {
         return link;
     }
 
     public void setLink(String link) {
+
         this.link = link;
+    }
+
+    public WebElement getElement() {
+        return element;
+    }
+
+    public void setElement(WebElement element) {
+        this.element = element;
     }
 }
 

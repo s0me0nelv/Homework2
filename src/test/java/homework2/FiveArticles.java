@@ -7,6 +7,7 @@ import model.Article;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
 import org.omg.PortableInterceptor.HOLDING;
 import org.openqa.selenium.*;
@@ -28,10 +29,28 @@ public class FiveArticles {
         LOGGER.info("We are opening www.delfi.lv");
         baseFunc.getToUrl(URL);
         HomePage homePage = new HomePage(baseFunc);
+        ArticlePage articlePage = new ArticlePage(baseFunc);
 
-        //Creating an Arraylist for our first five articles
-        LOGGER.info("We are creating an arraylist for first five articles");
+        //Creating firstFive list and filling it with first five article titles, comment count and links
+        LOGGER.info("We are creating an arraylist for the first five articles");
         List<Article> firstFive = homePage.getFirstFive();
+
+
+        //Click on the first article
+        firstFive.get(0).getElement().click();
+        //Get firstArticle title, comment count and link
+        List<Article> firstArticle = articlePage.getArticle();
+        //Compare firstArticle with firstFive
+        Assert.assertEquals("First article is not the same", firstFive.get(0).getTitle(), firstArticle.get(0).getTitle());
+
+        //Go to the second article
+        baseFunc.getToUrl(firstFive.get(1).getLink());
+
+
+
+
+
+
 
 
         //Open mobile page
@@ -40,8 +59,8 @@ public class FiveArticles {
         //Get first five articles to the list
         //Compare firstFive web with firstFIve mobile
 
-        //Open 1 article
-        //Get firstArticle title and comment
+
+
         //Compare with firstFive
         //Go to comment page
         //Get comment + comment
